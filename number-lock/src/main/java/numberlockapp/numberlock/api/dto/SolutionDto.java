@@ -2,6 +2,8 @@ package numberlockapp.numberlock.api.dto;
 
 import lombok.*;
 
+import java.util.ArrayList;
+
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ import lombok.*;
 @ToString
 public class SolutionDto {
 
-    private String combination;
+    private ArrayList<Long> combination;
 
     private Long solution;
 

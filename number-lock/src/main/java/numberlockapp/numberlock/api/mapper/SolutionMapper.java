@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 public class SolutionMapper {
 
     public SolutionDto solutionToSolutionDto(Solution solution){
-        return null;
+        return SolutionDto.builder()
+                .combination(solution.getCombination())
+                .rotations(solution.getRotations())
+                .solution(solution.getSolution())
+                .build();
     }
 }
