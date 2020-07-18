@@ -1,6 +1,7 @@
 package numberlockapp.numberlock.entity;
 
 import lombok.*;
+import numberlockapp.numberlock.NumberLockApplication;
 
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 public class NumComb {
 
     @NotNull(message = "The combination cannot be empty.")
-    @Size(min = 4, max = 4, message = "The combination should be 4 long.")
+    @Size(min = NumberLockApplication.NUM, max = NumberLockApplication.NUM,
+            message = "The combination should be "+ NumberLockApplication.NUM +" long.")
     private ArrayList<Long> combination;
 
 }

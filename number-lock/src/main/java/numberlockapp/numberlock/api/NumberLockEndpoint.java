@@ -1,5 +1,6 @@
 package numberlockapp.numberlock.api;
 
+import numberlockapp.numberlock.NumberLockApplication;
 import numberlockapp.numberlock.api.dto.SolutionDto;
 import numberlockapp.numberlock.api.mapper.SolutionMapper;
 import numberlockapp.numberlock.entity.NumComb;
@@ -36,7 +37,7 @@ public class NumberLockEndpoint {
     }
 
     @GetMapping(path = "/basic/{combination}")
-    public ArrayList<SolutionDto> basicSolution(@PathVariable @NotNull @Pattern(regexp = "[0-9]-[0-9]-[0-9]-[0-9]",
+    public ArrayList<SolutionDto> basicSolution(@PathVariable @NotNull @Pattern(regexp = "[0-9]([-][0-9]){"+ (NumberLockApplication.NUM-1) +"}",
             message = "The combination should have the following form: [0-9]-[0-9]-[0-9]-[0-9]")
                                                         String combination) {
         LOGGER.info("GET /api/v1/numlock/basic/{}",combination);
