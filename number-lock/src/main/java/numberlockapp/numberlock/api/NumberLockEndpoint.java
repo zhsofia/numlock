@@ -37,10 +37,11 @@ public class NumberLockEndpoint {
     }
 
     @GetMapping(path = "/basic/{combination}")
-    public ArrayList<SolutionDto> basicSolution(@PathVariable @NotNull @Pattern(regexp = "[0-9]([-][0-9]){"+ (NumberLockApplication.NUM-1) +"}",
-            message = "The combination should have the following form: [0-9]-[0-9]-[0-9]-[0-9]")
-                                                        String combination) {
-        LOGGER.info("GET /api/v1/numlock/basic/{}",combination);
+    public ArrayList<SolutionDto> basicSolution(@PathVariable @NotNull @Pattern(regexp = "[0-" + (NumberLockApplication.BASE - 1) + "]" +
+            "([-][0-" + (NumberLockApplication.BASE - 1) + "]){" + (NumberLockApplication.NUM - 1) + "}",
+            message = "The combination should contain " + NumberLockApplication.NUM + "numbers from 0 to " +
+                    NumberLockApplication.BASE + " each divided by -.") String combination) {
+        LOGGER.info("GET /api/v1/numlock/basic/{}", combination);
         ArrayList<Long> numbersList = Arrays.stream(combination.split("-")).mapToLong(Long::parseLong)
                 .boxed().collect(Collectors.toCollection(ArrayList::new));
 

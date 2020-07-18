@@ -20,7 +20,7 @@ public class NumComb {
 
     @NotNull(message = "The combination cannot be empty.")
     @Size(min = NumberLockApplication.NUM, max = NumberLockApplication.NUM,
-            message = "The combination should be "+ NumberLockApplication.NUM +" long.")
+            message = "The combination should be "+ NumberLockApplication.NUM+" long.")
     private ArrayList<Long> combination;
 
 }

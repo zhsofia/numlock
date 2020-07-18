@@ -14,9 +14,9 @@ import java.util.ArrayList;
 @ToString
 public class SolutionDto {
 
-    private ArrayList<Long> combination;
+    private String combination;
 
-    private Long solution;
+    private String solution;
 
     private Long rotations;
 
