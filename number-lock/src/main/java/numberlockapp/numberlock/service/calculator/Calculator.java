@@ -15,8 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class Calculator {
 
-    private Long calculateRotationsXY(@Min(0) @Max(NumberLockApplication.BASE-1) Long x,
-                                      @Min(0) @Max(NumberLockApplication.BASE-1) Long y) {
+    private Long calculateRotationsXY(Long x, Long y) {
         if (Math.abs(x - y) <= NumberLockApplication.BASE / 2) {
             return Math.abs(x - y);
         } else {
@@ -28,11 +27,7 @@ public class Calculator {
         ArrayList<Solution> solutions = new ArrayList<>();
         Long minRotations = Long.MAX_VALUE;
         for (int i = 0; i < NumberLockApplication.BASE; i++) {
-            Long currRotations = 0L;
-            for (int j = 0; j < numComb.getCombination().size(); j++) {
-                Long rotations = calculateRotationsXY(numComb.getCombination().get(j), (long) i);
-                currRotations += rotations;
-            }
+            Long currRotations = calculateRotations(numComb, i);
             if (currRotations.equals(minRotations)) {
                 Solution solution = Solution.builder()
                         .combination(numComb.getCombination())
@@ -50,5 +45,14 @@ public class Calculator {
             }
         }
         return solutions;
+    }
+
+    private Long calculateRotations(NumComb numComb, long i) {
+        Long currRotations = 0L;
+        for (int j = 0; j < numComb.getCombination().size(); j++) {
+            Long rotations = calculateRotationsXY(numComb.getCombination().get(j), i);
+            currRotations += rotations;
+        }
+        return currRotations;
     }
 }
